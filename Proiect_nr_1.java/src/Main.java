@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import static java.lang.Thread.sleep;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -13,7 +15,11 @@ public class Main {
                 case 1 -> System.out.println("Optiunea 1");
                 case 2 -> System.out.println("Optiunea 2");
                 case 3 -> System.out.println("Optiunea 3");
-                case 4 -> System.out.println("--Iesire aplicatie--");
+                case 4 -> {
+                    System.out.println("--Iesire aplicatie...--");
+                    wait(1000);
+                    System.exit(0);
+                }
                 default -> {
                 }
             }
