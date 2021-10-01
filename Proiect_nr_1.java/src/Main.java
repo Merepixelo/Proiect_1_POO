@@ -10,11 +10,11 @@ public class Main {
         do {
             selectieUtilizator=DataMeniu();
             switch (selectieUtilizator) {
-                case 1 -> System.out.println("Optiunea 1");
-                case 2 -> System.out.println("Optiunea 2");
-                case 3 -> System.out.println("Optiunea 3");
+                case 1 -> System.out.println("Spalare selectata...");
+                case 2 -> System.out.println("Clatire selectata...");
+                case 3 -> System.out.println("Stoarcere selectata...");
                 case 4 -> {
-                    System.out.println("--Iesire aplicatie...--");
+                    System.out.println("Finalizare...");
                     System.exit(0);
                 }
                 default -> {
@@ -22,24 +22,48 @@ public class Main {
             }
         }while (selectieUtilizator>4);
 
-
     }
 
     public static int DataMeniu() {
 
         int grab;
         Scanner sc=new Scanner(System.in);
-        System.out.println("HELLO THERE MON! /n Please select what you want to do!");
-        System.out.println("|--------------------------------|");
-        System.out.println("    Thing A");
-        System.out.println("    Thing B");
-        System.out.println("    Thing C");
-        System.out.println("    Leave and never come back");
+            System.out.println("\nMasina de spalat");
+        System.out.println("|------------------------------|");
+        System.out.println("1)    Spalare");
+        System.out.println("2)    Clatire");
+        System.out.println("3)    Stoarcere");
+        System.out.println("4)    Oprire");
         System.out.println("|_______________________________|");
 
-        System.out.println("|You have selecte Thing: ");
+        System.out.println("Selected: ");
         grab=sc.nextInt();
         return grab;
     }
 
 }
+
+
+
+/*
+
+
+Cerinte:
+
+Deadline: 6.10.2021
+Proiect:
+Aplicatie in consola
+                                                                                /
+Aplicatia trebuie sa contina un meniu in consola cu minim 3 optiuni         _ _/
+
+Un numar de 3-4 clase ce incapsuleaza un concept/set de concepte la alegere
+
+Competente:
+Folosirea corecta a claselor, constructorilor, membrii/campuri, modificatori de acces
+Instantiere, incapsulare
+Metoda main()
+
+https://beginnersbook.com/2013/05/encapsulation-in-java/
+
+https://beginnersbook.com/2013/05/encapsulation-in-java/
+ */
