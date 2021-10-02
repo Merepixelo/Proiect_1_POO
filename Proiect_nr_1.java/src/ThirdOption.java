@@ -1,6 +1,0 @@
-
-//Forge
-
-public class ThirdOption {
-
-}

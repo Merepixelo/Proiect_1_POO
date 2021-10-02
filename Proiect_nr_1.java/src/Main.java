@@ -4,15 +4,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // MENIU sent food pics
+        // MENIU
 
         int selectieUtilizator;
         do {
             selectieUtilizator=DataMeniu();
             switch (selectieUtilizator) {
-                case 1 -> System.out.println("Spalare selectata...");
-                case 2 -> System.out.println("Clatire selectata...");
-                case 3 -> System.out.println("Stoarcere selectata...");
+                case 1 -> System.out.println("Comanda Taxi selectata...");
+                case 2 -> System.out.println("B selectata...");
+                case 3 -> System.out.println("Achitare Plata selectata...");
                 case 4 -> {
                     System.out.println("Finalizare...");
                     System.exit(0);
@@ -28,15 +28,15 @@ public class Main {
 
         int grab;
         Scanner sc=new Scanner(System.in);
-            System.out.println("\nMasina de spalat");
+            System.out.println("\nMereTaxi ");
         System.out.println("|------------------------------|");
-        System.out.println("1)    Spalare");
-        System.out.println("2)    Clatire");
-        System.out.println("3)    Stoarcere");
-        System.out.println("4)    Oprire");
+        System.out.println("1)    COMANDA TAXI");
+        System.out.println("2)    B");
+        System.out.println("3)    ACHITARE PLATA");
+        System.out.println("4)    Inchidere");
         System.out.println("|_______________________________|");
 
-        System.out.println("Selected: ");
+        System.out.println("A-ti Selectat: ");
         grab=sc.nextInt();
         return grab;
     }
