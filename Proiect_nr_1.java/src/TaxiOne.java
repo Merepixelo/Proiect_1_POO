@@ -23,11 +23,6 @@ public class TaxiOne {
         return sofer;
     }
 
-    public void setSofer(){
-        this.sofer="Marian Flore";
-    }
-
-
     public String getMasina(){
         return masina;
     }
@@ -46,6 +41,11 @@ public class TaxiOne {
     }
 
     //Setter-i
+
+   /* public void setSofer(){
+        this.sofer="Marian Flore";
+    }
+  */
     public  void setRezervare(boolean newRezervare){
         this.rezervare=newRezervare;
     }
@@ -59,8 +59,9 @@ public class TaxiOne {
        this.distanta+=newDistanta;
     }
 
-    public void Tarift(){
-        this.tarif_total=(this.tarif_start)*(distanta);
+    public void Tarift(double distanta){
+        this.tarif_total=this.tarif_start*distanta;
+        System.out.println(this.tarif_total);
     }
 
 }
