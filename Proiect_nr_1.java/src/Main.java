@@ -5,12 +5,29 @@ public class Main {
     public static void main(String[] args) {
 
         // MENIU
+        TaxiOne tx1=new TaxiOne();
+        TaxiTwo tx2=new TaxiTwo();
+
+        Scanner sc= new Scanner(System.in);
 
         int selectieUtilizator;
         do {
             selectieUtilizator=DataMeniu();
             switch (selectieUtilizator) {
-                case 1 -> System.out.println("Comanda Taxi selectata...");
+                case 1 -> {
+                    System.out.println("Comanda Taxi selectata...\n");
+
+                    System.out.println("Sofer Taxi: "+tx1.getSofer());
+                    System.out.println("Model masina Taxi: "+tx1.getMasina());
+                    System.out.println("Companie Taxi: "+tx1.getCompanie());
+                    System.out.println("Locatia De pornire taxi: "+tx1.getLocatie_statie_taxi());
+                    System.out.println("Tariful de pornire: "+tx1.getTarif_start()+" lei ");
+                    System.out.println("Numar de locuri disponibile: "+tx1.getLocuri_libere()+" locuri ");
+                    System.out.println("Locatie comandaa: ");
+                    String str= sc.nextLine();
+                    tx1.setLocatie_comanda(str);
+
+                }
                 case 2 -> System.out.println("B selectata...");
                 case 3 -> System.out.println("Achitare Plata selectata...");
                 case 4 -> {
