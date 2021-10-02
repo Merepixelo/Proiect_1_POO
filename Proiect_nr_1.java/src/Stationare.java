@@ -1,5 +1,5 @@
 
-//Sell option
+//Stationare
 /*
 public class SecondOption {
 

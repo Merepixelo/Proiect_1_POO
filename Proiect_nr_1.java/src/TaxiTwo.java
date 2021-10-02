@@ -8,6 +8,7 @@ public class TaxiTwo {
     private String companie="Mere Taxi SRL.";
     private String locatie_statie_taxi="Parc Ciresari (Centru)";
     private double tarif_start=4.8;//lei
+    private double tarif_drum=6.7;//lei
     private int    locuri_libere=2;
 
     public String locatie_comanda="Lama nr.5";
@@ -36,6 +37,12 @@ public class TaxiTwo {
     public double getTarif_start(){
         return tarif_start;
     }
+
+    public double getTarif_drum(){
+
+        return tarif_start;
+    }
+
     public int getLocuri_libere(){
         return locuri_libere;
     }
@@ -60,7 +67,7 @@ public class TaxiTwo {
     }
 
     public void Tarift(double distanta){
-        this.tarif_total=this.tarif_start*distanta;
+        this.tarif_total=this.tarif_drum*distanta+this.tarif_start;
         System.out.println(this.tarif_total);
     }
 
