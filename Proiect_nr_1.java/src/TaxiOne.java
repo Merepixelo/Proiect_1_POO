@@ -39,6 +39,7 @@ public class TaxiOne {
         return tarif_start;
     }
     public double getTarif_drum(){return  tarif_drum;}
+    public double getTarif_total(){return tarif_total;}
     public int getLocuri_libere(){
         return locuri_libere;
     }
@@ -67,7 +68,6 @@ public class TaxiOne {
 
     public void Tarift(double distanta){
         this.tarif_total=this.tarif_drum*distanta+this.tarif_start;
-        System.out.println(this.tarif_total);
     }
 
 }

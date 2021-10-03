@@ -1,6 +1,7 @@
 import com.sun.source.tree.WhileLoopTree;
 
 import java.util.Scanner;
+import java.util.Timer;
 
 public class Main {
 
@@ -10,7 +11,9 @@ public class Main {
         TaxiOne tx1=new TaxiOne();
         TaxiTwo tx2=new TaxiTwo();
         PlataTaxi pltt=new PlataTaxi();
+        Stationare stat=new Stationare();
         Scanner sc= new Scanner(System.in);
+        Timer timer = new Timer();
 
         int selectieUtilizator;
         int selectieUtilizator2;
@@ -38,7 +41,7 @@ public class Main {
                                     double nr= sc.nextDouble();
                                     System.out.println("Tariful Drum: ");
                                     tx1.Tarift(nr);
-
+                                    System.out.println(tx1.getTarif_total());
                                     System.out.println("Doriti alta obtiune?(d/n) ");
                                     char c = sc.next().charAt(0);
                                     if (c=='d')
@@ -83,6 +86,13 @@ public class Main {
                     }
                     case 2 -> {
                                    System.out.println("Stationara in Asteptare selectata...");
+                                   System.out.println("Tari de start asteptare: "+stat.getTarifstart());
+                                   System.out.println("Tarif pe minut: "+stat.getTaxastationare());
+                                   System.out.println("Durata de stationare: ");
+                                   double nr= sc.nextDouble();
+                                   stat.setTariftotal(nr);
+                                   System.out.println("Taxa totala pt stationat: "+stat.getTariftotal());
+
                     }
                     case 3 ->{
                         System.out.println("Achitare Plata selectata...");
@@ -149,7 +159,7 @@ public class Main {
         System.out.println("1)    COMANDA TAXI");
         System.out.println("2)    STATIONARE IN ASTEPTARE");
         System.out.println("3)    ACHITARE PLATA");
-        System.out.println("4)    Inchidere");
+        System.out.println("4)    INCHIDERE MENIU");
         System.out.println("|_______________________________|");
 
         System.out.println("A-ti Selectat: ");
