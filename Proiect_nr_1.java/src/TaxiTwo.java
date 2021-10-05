@@ -19,6 +19,8 @@ public class TaxiTwo {
 
 
 
+
+
     //Getter-i
     public String getSofer(){
         return sofer;
@@ -33,16 +35,12 @@ public class TaxiTwo {
     public  String getLocatie_statie_taxi(){
         return  locatie_statie_taxi;
     }
-
+    public String getLocatie_comanda(){return  locatie_comanda;}
     public double getTarif_start(){
         return tarif_start;
     }
-
-    public double getTarif_drum(){
-
-        return tarif_start;
-    }
-
+    public double getTarif_drum(){return  tarif_drum;}
+    public double getTarif_total(){return tarif_total;}
     public int getLocuri_libere(){
         return locuri_libere;
     }
@@ -54,23 +52,26 @@ public class TaxiTwo {
      }
    */
     public  void setRezervare(boolean newRezervare){
+
         this.rezervare=newRezervare;
     }
 
     public void setLocatie_comanda(String newLocatie){
+
         this.locatie_comanda=newLocatie;
     }
 
     //Distana
     public void DistantaDeParcurs(double newDistanta){
+
         this.distanta+=newDistanta;
     }
 
     public void Tarift(double distanta){
         this.tarif_total=this.tarif_drum*distanta+this.tarif_start;
-        System.out.println(this.tarif_total);
     }
 
 }
+
 
 
