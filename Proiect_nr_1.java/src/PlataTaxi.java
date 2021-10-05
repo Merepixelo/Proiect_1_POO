@@ -13,7 +13,7 @@ public class PlataTaxi {
     private double cash_client=0.0;
     public double r=0.0;
     private double diferenta=0.0;
-
+public double aux=0.0;
     //Getteri
     public double getCash(){
         return cash;
@@ -60,9 +60,12 @@ public class PlataTaxi {
                   System.out.println("Plata achitata fix... O zi buna!...");
                   System.out.println("(Cash taxi: "+this.cash+")");
         }else if (this.taxa<this.cash_client){
-                    rest=this.cash-this.taxa;
-                    this.cash=this.cash+this.taxa-rest;
-                    this.cash_client=this.cash_client-this.taxa;
+            aux=this.cash;//500
+            this.cash+=this.cash_client;//500+200=700
+            rest=this.cash-aux-this.taxa;//700-500+137.5= 700-637.5=62.5
+            this.cash_client=rest;
+            this.cash-=rest;
+
                     System.out.println("Plata achitata... restul dvs: "+rest);
                     System.out.println("(Cash taxi: "+this.cash+")");
             }else{

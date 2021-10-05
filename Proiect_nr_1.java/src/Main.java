@@ -1,5 +1,6 @@
 import com.sun.source.tree.WhileLoopTree;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.Timer;
@@ -7,7 +8,7 @@ import java.util.Timer;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws IOException {
 
         // MENIU
         //constructori
@@ -16,6 +17,8 @@ public class Main {
         PlataTaxi pltt = new PlataTaxi();
         Stationare stat = new Stationare();
         Scanner sc = new Scanner(System.in);
+        File bon=new File("Bon Fiscal.txt");
+        FileWriter myWriter = new FileWriter("Bon Fiscal.txt");
         Timer timer = new Timer();
 
         int selectieUtilizator;
@@ -128,37 +131,104 @@ public class Main {
                                 /*M2 c2*/
                                 case 2 -> {
                                     System.out.println("Comanda Taxi selectata...\n");
-                                    System.out.println("Sofer Taxi: " + tx2.getSofer());
-                                    System.out.println("Model masina Taxi: " + tx2.getMasina());
+
                                     System.out.println("Companie Taxi: " + tx2.getCompanie());
-                                    System.out.println("Locatia De pornire taxi: " + tx2.getLocatie_statie_taxi());
                                     System.out.println("Tariful de pornire: " + tx2.getTarif_start() + " lei ");
                                     System.out.println("Tariful de drum: " + tx2.getTarif_drum() + " lei ");
+                                    System.out.println("Sofer Taxi: " + tx2.getSofer());
+                                    System.out.println("Model masina Taxi: " + tx2.getMasina());
+                                    System.out.println("Locatia De pornire taxi: " + tx2.getLocatie_statie_taxi());
                                     System.out.println("Numar de locuri disponibile: " + tx2.getLocuri_libere() + " locuri ");
+
                                     System.out.println("Locatie comanda: ");
                                     String str = sc.nextLine();
                                     tx2.setLocatie_comanda(str);
-                                    System.out.println("Distanta pana la Destinatie(Km): ");
+
+                                    System.out.println("Distanta pana la destinatie(Km): ");
                                     double nr = sc.nextDouble();
-                                    System.out.println("Tariful Drum(RON): ");
+                                    System.out.println("Tariful drum total (RON): ");
                                     tx2.Tarift(nr);
+                                    System.out.println(tx2.getTarif_total());
 
                                     System.out.println("Doriti sa platiti??(d/n) ");
                                     char c = sc.next().charAt(0);
                                     if (c == 'd') {
-                                        pltt.setTaxa(tx1.getTarif_total());
-                                        System.out.println("Taxa totala drun taxi: ");
-                                        pltt.Platat(pltt.getTaxa());
-                                    } else if (c == 'n')
-                                        System.out.println("Sa aveti o zi buna! ");
-                                    break;
-                                }
+                                        System.out.println("Achitare Plata...");
+                                        System.out.println("Cash Taxi: " + pltt.getCash());
+                                        System.out.println("Sold POS Taxi: " + pltt.getPOS_sold());
+                                        do {
+                                            selectieUtilizator3 = DataMeniu3();
+                                            switch (selectieUtilizator3) {
+                                                /*Plata cash*/
+                                                case 1 -> {
+                                                    System.out.println("Introduceti suma cash: ");
+                                                    double nr2 = sc.nextDouble();
+                                                    pltt.setCash_clinet(nr2);
 
+                                                    System.out.println("(Taxa cash se actualizeaza) ");
+
+                                                    pltt.setTaxa(tx2.getTarif_total());
+
+                                                    System.out.println("Tranzactie in curs de desfasurare... \n");
+
+                                                    pltt.Platat(pltt.getTaxa());
+                                                    break;
+                                                }
+                                                /*Plata POS*/
+                                                //Functioneaza
+                                                case 2 -> {
+
+                                                    System.out.println("Introduceti suma POS: ");
+                                                    double nr2 = sc.nextDouble();
+                                                    pltt.setPOS_sold_c(nr2);
+
+                                                    System.out.println("Taxa POS: ");
+
+                                                    pltt.setTaxa(tx2.getTarif_total());
+
+                                                    System.out.println("Tranzactie in curs de desfasurare... \n");
+
+                                                    pltt.Platapos(nr2, pltt.getTaxa());
+                                                    break;
+                                                }
+
+                                                /*Split Pay*/
+                                                case 3 -> {
+                                                    System.out.println("Split Pay selectat...");
+                                                    System.out.println("Introduceti suma cash: ");
+                                                    double nr4 = sc.nextDouble();
+                                                    pltt.setCash_clinet(nr4);
+                                                    System.out.println("Introduceti suma POS: ");
+                                                    double nr5 = sc.nextDouble();
+                                                    pltt.setPOS_sold_c(nr5);
+                                                    if(nr4<nr5)
+                                                    {
+                                                        pltt.setTaxa(tx2.getTarif_total());
+                                                        pltt.SplitPay(nr4,nr5);
+                                                        System.out.println("Cash client: "+pltt.getCash_clinet());
+                                                        System.out.println("Cash Taxi: "+pltt.getCash());
+                                                        System.out.println("POS client: "+pltt.getPOS_sold_c());
+                                                        System.out.println("POS Taxi: "+pltt.getPOS_sold());
+                                                    }
+
+                                                    break;
+                                                }
+
+                                                default -> {
+                                                    break;
+                                                }
+                                            }
+                                        } while (selectieUtilizator3 >= 3);
+                                    } else if (c == 'n')
+                                        break;
+                                }
                                 default -> {
                                     System.out.println("Alegerea trebuie sa fie intre 1-3");
                                 }
+                                }
+
                             }
-                        }while (selectieUtilizator2 >= 3) ;
+                        while (selectieUtilizator2 >= 3) ;
                     }
 //M1 c2
                         case 2 -> {
@@ -176,9 +246,61 @@ public class Main {
                         case 3 -> {
                             //tx1.getLocatie_comanda();
                             System.out.println("Tiparire Bon selectata...");
+                            //Creare bon
+                            try {
+                                if (bon.createNewFile()) {
+                                    System.out.println("Bon fiscal: " + bon.getName());
+                                } else {
+                                    System.out.println("Bonul deja exista...");
+                                }
+
+                            } catch (IOException e) {
+                                System.out.println("Eroare...");
+                                e.printStackTrace();
+                            }
+
+                            //Scrie date in bon
+
+                            if (DataMeniu2() == 1)
+                            {
+                                try {
+                                    myWriter.write("Companie Taxi: " + tx1.getCompanie());
+                                    myWriter.write("Tariful de pornire: " + tx1.getTarif_start() + " lei ");
+                                    myWriter.write("Tariful de drum: " + tx1.getTarif_drum() + " lei ");
+                                    myWriter.write("Tariful de drum: " + tx1.getTarif_drum() + " lei ");
+                                    myWriter.write("Locatie comanda: "+tx1.getLocatie_comanda());
+                                    myWriter.write("Distanta parcursa: "+tx1.distanta);
+                                    myWriter.write("Total: "+tx1.getTarif_total());
+                                    myWriter.close();
+                                    System.out.println("Bonul a fost tiparit! O zi buna!");
+                                } catch (IOException e) {
+                                    System.out.println("An error occurred.");
+                                    e.printStackTrace();
+                                }
+
+                            }else if (DataMeniu2() == 2)
+                            {
+                                    /*
+                                    try {
+                                    myWriter.write("Companie Taxi: " + tx1.getCompanie());
+                                    myWriter.write("Tariful de pornire: " + tx1.getTarif_start() + " lei ");
+                                    myWriter.write("Tariful de drum: " + tx1.getTarif_drum() + " lei ");
+                                    myWriter.write("Tariful de drum: " + tx1.getTarif_drum() + " lei ");
+                                    myWriter.write("Locatie comanda: "+tx1.getLocatie_comanda());
+                                    myWriter.write("Distanta parcursa: "+tx1.distanta);
+                                    myWriter.write("Total: "+tx1.getTarif_total());
+                                    myWriter.close();
+                                    System.out.println("Bonul a fost tiparit! O zi buna!");
+                                } catch (IOException e) {
+                                    System.out.println("An error occurred.");
+                                    e.printStackTrace();
+                                     */
+                            }
 
 
                         }
+
+
                         case 4 -> {
                             System.out.println("Inchidere program...");
                             System.exit(0);
@@ -197,7 +319,7 @@ public class Main {
                 System.out.println("|------------------------------|");
                 System.out.println("1)    COMANDA TAXI");
                 System.out.println("2)    STATIONARE IN ASTEPTARE");
-                System.out.println("3)    ACHITARE PLATA");
+                System.out.println("3)    TIPARIRE BON FISCAL ");
                 System.out.println("4)    INCHIDERE MENIU");
                 System.out.println("|_______________________________|");
 
