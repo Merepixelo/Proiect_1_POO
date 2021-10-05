@@ -12,6 +12,7 @@ public class PlataTaxi {
     public double POS_sold_c=0.0;
     private double cash_client=0.0;
     public double r=0.0;
+    private double diferenta=0.0;
 
     //Getteri
     public double getCash(){
@@ -30,6 +31,9 @@ public class PlataTaxi {
         return cash_client;
     }
 
+    public double getPOS_sold_c() {return POS_sold_c;}
+
+    public double getDiferenta(){return  diferenta;}
     //Setteri
     public void setCash(double newCash){
         cash=newCash;
@@ -47,7 +51,7 @@ public class PlataTaxi {
 
     void setPOS_sold_c(double newPOS_sold_c){POS_sold_c=newPOS_sold_c;};
 
-
+    void setDiferenta(double newDiferenta){diferenta=newDiferenta;}
 
 
     public void Platat(double taxa){
@@ -80,7 +84,22 @@ public class PlataTaxi {
             }
     }
 
-    public void Platestsisi(double POS_sold_c,double cash_clinet,double taxa){
+
+
+    public  void SplitPay(double cash_client,double POS_sold_c){
+            this.diferenta=this.taxa-this.cash_client;
+            this.cash+=this.cash_client;
+            this.cash_client=0.0;
+            if (POS_sold_c>=this.diferenta){
+
+                this.POS_sold+=this.diferenta;
+                POS_sold_c-=this.diferenta;
+                POS_sold_c-=this.diferenta;
+
+            }else  {System.out.println("*FAKE TAXI THEME STARTS TO PLAY*");
+                    System.out.println("( ⚆ _ ⚆ )");
+            }
+    }
     }
 
-    }
+

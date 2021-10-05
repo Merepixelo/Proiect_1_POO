@@ -1,7 +1,9 @@
 import com.sun.source.tree.WhileLoopTree;
-
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Timer;
+
 
 public class Main {
 
@@ -19,7 +21,7 @@ public class Main {
         int selectieUtilizator;
         int selectieUtilizator2;
         int selectieUtilizator3;
-        double diferenta=0.0;
+
 
         do {selectieUtilizator = DataMeniu();
             switch (selectieUtilizator) {
@@ -103,8 +105,13 @@ public class Main {
                                                     double nr5 = sc.nextDouble();
                                                     pltt.setPOS_sold_c(nr5);
                                                     if(nr4<nr5)
-                                                    { int a=pltt.setTaxa(tx1.getTarif_total());
-                                                        diferenta= - pltt.getCash_clinet();
+                                                    {
+                                                        pltt.setTaxa(tx1.getTarif_total());
+                                                        pltt.SplitPay(nr4,nr5);
+                                                        System.out.println("Cash client: "+pltt.getCash_clinet());
+                                                        System.out.println("Cash Taxi: "+pltt.getCash());
+                                                        System.out.println("POS client: "+pltt.getPOS_sold_c());
+                                                        System.out.println("POS Taxi: "+pltt.getPOS_sold());
                                                     }
 
                                                     break;
