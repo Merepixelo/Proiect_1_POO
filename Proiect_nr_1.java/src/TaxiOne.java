@@ -34,7 +34,7 @@ public class TaxiOne {
     public  String getLocatie_statie_taxi(){
         return  locatie_statie_taxi;
     }
-
+    public String getLocatie_comanda(){return  locatie_comanda;}
     public double getTarif_start(){
         return tarif_start;
     }
